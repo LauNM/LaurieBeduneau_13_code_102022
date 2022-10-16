@@ -103,7 +103,7 @@ html {
   @media (min-width: 920px) {
     .hero {
       height: 400px;
-      background-position: 0% 33%;
+      background-position: 0 33%;
     }
   
     .hero-content {
@@ -208,7 +208,7 @@ html {
     border-top: 2px solid #ccc;
     padding: 2rem 0 1.5rem;
   }
-  
+
   .footer-text {
     margin: 0;
     padding: 0;
@@ -289,4 +289,12 @@ html {
       width: 200px;
     }
   }
-  
+
+.logout-button {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  color: #2c3e50;
+  cursor: pointer;
+  font-size: 1rem;
+}
