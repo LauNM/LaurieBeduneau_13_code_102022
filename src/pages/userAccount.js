@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import '../assets/scss/style.scss';
 import { getUser } from "../api/fetchData";
 import { useSelector, useDispatch } from 'react-redux'
@@ -27,7 +27,9 @@ function UserAccount() {
             <main className="main bg-dark">
                 <div className="header">
                     <h1>Welcome back<br />{user.firstName} !</h1>
-                    <button className="edit-button">Edit Name</button>
+                    <Link to={'/account/edit'}>
+                        <button className="edit-button">Edit Name</button>
+                    </Link>
                 </div>
                 <h2 className="sr-only">Accounts</h2>
                 <section className="account">
