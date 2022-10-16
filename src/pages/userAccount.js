@@ -1,19 +1,32 @@
-//import { Navigate } from 'react-router-dom';
-//import { useSelector } from 'react-redux';
-//import { selectCurrentUser } from '../slices/authSlice';
+import { Navigate } from 'react-router-dom';
 import '../assets/scss/style.scss';
-
+import { getUser } from "../api/fetchData";
+import { useSelector, useDispatch } from 'react-redux'
+import { setUser } from "../slices/userSlice";
 
 function UserAccount() {
-    //const token = useSelector(selectCurrentUser);
+    const { token } = useSelector((state) => state.token);
+    const dispatch = useDispatch();
 
+    const fetchUser = async () => {
+        try {
+            const {body} = await getUser('http://localhost:3001/api/v1/user/profile', token);
+            dispatch(setUser(body));
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+    fetchUser();
+
+    const user = useSelector((state) => state.user)
 
     return (
         <div>
-            {/* {token ?  */}
+             {token ?
             <main className="main bg-dark">
                 <div className="header">
-                    <h1>Welcome back<br />Tony Jarvis!</h1>
+                    <h1>Welcome back<br />{user.firstName} !</h1>
                     <button className="edit-button">Edit Name</button>
                 </div>
                 <h2 className="sr-only">Accounts</h2>
@@ -48,8 +61,8 @@ function UserAccount() {
                     </div>
                 </section>
             </main>
-          {/*  : <Navigate to="/sign-in" />
-            }  */}
+            : <Navigate to="/sign-in" />
+            }
         </div>
     )
 }

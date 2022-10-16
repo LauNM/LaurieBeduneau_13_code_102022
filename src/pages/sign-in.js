@@ -1,7 +1,7 @@
 import '../assets/scss/style.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getUser } from '../api/fetchData';
+import { getToken } from '../api/fetchData';
 import { useDispatch } from 'react-redux';
 
 import { setToken } from '../slices/authSlice';
@@ -12,15 +12,11 @@ function SignIn() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const {body} = await getUser('http://localhost:3001/api/v1/user/login', {email, password})
+            const {body} = await getToken('http://localhost:3001/api/v1/user/login', {email, password})
             const token = body.token
-            console.log(token)
             dispatch(setToken(token)); 
             setEmail('');
             setPassword('');
