@@ -1,16 +1,16 @@
-import { useLocation, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectCurrentToken } from '../slices/authSlice';
+//import { Navigate } from 'react-router-dom';
+//import { useSelector } from 'react-redux';
+//import { selectCurrentUser } from '../slices/authSlice';
 import '../assets/scss/style.scss';
 
+
 function UserAccount() {
-    const token = useSelector(selectCurrentToken);
-    const location = useLocation();
+    //const token = useSelector(selectCurrentUser);
 
 
     return (
         <div>
-            {token ? 
+            {/* {token ?  */}
             <main className="main bg-dark">
                 <div className="header">
                     <h1>Welcome back<br />Tony Jarvis!</h1>
@@ -48,8 +48,8 @@ function UserAccount() {
                     </div>
                 </section>
             </main>
-            : <Navigate to="/login" state={{ from: location }} replace />
-            }
+          {/*  : <Navigate to="/sign-in" />
+            }  */}
         </div>
     )
 }
