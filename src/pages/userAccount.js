@@ -1,6 +1,7 @@
+import React, {useEffect} from "react";
 import {Link, Navigate} from 'react-router-dom';
 import '../assets/scss/style.scss';
-import { getUser } from "../api/fetchData";
+import { getProfile } from "../api/apiRquests";
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from "../slices/userSlice";
 
@@ -10,16 +11,22 @@ function UserAccount() {
 
     const fetchUser = async () => {
         try {
-            const {body} = await getUser('http://localhost:3001/api/v1/user/profile', token);
+            const { body } = await getProfile();
             dispatch(setUser(body));
         }
         catch (error) {
             console.log(error)
         }
     }
-    fetchUser();
+   
+    useEffect(() => {
+        fetchUser();
+    },[]);
+
 
     const user = useSelector((state) => state.user)
+
+    if (user.firstName === null) return <div>Loading...</div>
 
     return (
         <div>
