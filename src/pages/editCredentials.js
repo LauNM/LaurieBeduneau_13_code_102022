@@ -16,7 +16,7 @@ function EditCredentials() {
     try {
       const { body } = await updateProfile({ firstName: firstNameRef.current.value ,lastName: lastNameRef.current.value })
       dispatch(setUser(body));
-      navigate('/account');
+      navigate('/profile');
     } catch (error) {
       console.log(error)
     }
@@ -38,7 +38,7 @@ function EditCredentials() {
         <button className="sign-in-button">Modifier</button>
       </form>
       </section>
-      <Link to={'/account'}>
+      <Link to={'/profile'}>
           <button className="cancel">
             Annuler
           </button>

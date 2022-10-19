@@ -12,7 +12,7 @@ function Navbar() {
     try {
       dispatch(logOut())
       localStorage.removeItem("token");
-      navigate('/sign-in');
+      navigate('/');
     } catch (error) {
       console.log(error)
     }
@@ -34,7 +34,7 @@ function Navbar() {
       <div>
         {isConnected ?
           <span>
-            <Link to={'/account'}>
+            <Link to={'/profile'}>
               <span className="main-nav-item">
                 <FontAwesomeIcon icon={faHouseUser} />
                 Mon Compte
@@ -48,7 +48,7 @@ function Navbar() {
             </button>
           </span>
           :
-          <Link to={'/sign-in'}>
+          <Link to={'/login'}>
             <span className="main-nav-item">
               <FontAwesomeIcon icon={faUserCircle} />
               Sign In

@@ -7,7 +7,7 @@ import { setToken } from '../slices/authSlice';
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-function SignIn() {
+function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
     const checkRef = useRef();
@@ -24,8 +24,7 @@ function SignIn() {
             if (checkRef.current.checked) {
                 localStorage.setItem("token",token)
             }
-
-            navigate('/account');
+            navigate('/profile');
         }
         catch (error) {
            console.log(error)
@@ -57,4 +56,4 @@ function SignIn() {
     );
 }
 
-export default SignIn;
+export default Login;

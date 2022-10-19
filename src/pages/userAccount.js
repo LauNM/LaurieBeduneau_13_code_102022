@@ -33,7 +33,7 @@ function UserAccount() {
             <main className="main bg-dark">
                 <div className="header">
                     <h1>Welcome back<br />{user.firstName} !</h1>
-                    <Link to={'/account/edit'}>
+                    <Link to={'/profile/edit'}>
                         <button className="edit-button">Edit Name</button>
                     </Link>
                 </div>
@@ -69,7 +69,7 @@ function UserAccount() {
                     </div>
                 </section>
             </main>
-            : <Navigate to="/sign-in" />
+            : <Navigate to="/" />
             }
         </div>
     )
