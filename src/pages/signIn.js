@@ -1,34 +1,31 @@
 import '../assets/scss/style.scss';
-import { useState } from 'react';
+import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getToken } from '../api/fetchData';
+import { getToken } from '../api/apiRquests';
 import { useDispatch } from 'react-redux';
 
 import { setToken } from '../slices/authSlice';
 
 function SignIn() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const emailRef = useRef();
+    const passwordRef = useRef();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
-            const {body} = await getToken('http://localhost:3001/api/v1/user/login', {email, password})
+            const {body} = await getToken({email: emailRef.current.value, password: passwordRef.current.value})
             const token = body.token
-            dispatch(setToken(token)); 
-            setEmail('');
-            setPassword('');
+            dispatch(setToken(token));
+            localStorage.setItem("token",token)
             navigate('/account');
         }
         catch (error) {
            console.log(error)
         }
     }
-
-    const handleEmailInput = (e) => setEmail(e.target.value);
-    const handlePasswordInput = (e) => setPassword(e.target.value);
 
     return (
         <main className="main bg-dark">
@@ -38,11 +35,11 @@ function SignIn() {
                 <form onSubmit={handleSubmit}>
                     <div className="input-wrapper">
                         <label htmlFor="username">Username</label>
-                        <input type="text" id="username" onChange={handleEmailInput}/>
+                        <input ref={emailRef} type="text" id="username"/>
                     </div>
                     <div className="input-wrapper">
-                        <label htmlFor="password">Password</label
-                        ><input type="password" id="password" onChange={handlePasswordInput}/>
+                        <label htmlFor="password">Password</label>
+                        <input ref={passwordRef} type="password" id="password"/>
                     </div>
                     <div className="input-remember">
                         <input type="checkbox" id="remember-me" />
