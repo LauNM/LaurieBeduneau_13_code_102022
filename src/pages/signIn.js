@@ -1,14 +1,16 @@
-import '../assets/scss/style.scss';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getToken } from '../api/apiRquests';
 import { useDispatch } from 'react-redux';
 
 import { setToken } from '../slices/authSlice';
+import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function SignIn() {
     const emailRef = useRef();
     const passwordRef = useRef();
+    const checkRef = useRef();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -19,7 +21,10 @@ function SignIn() {
             const {body} = await getToken({email: emailRef.current.value, password: passwordRef.current.value})
             const token = body.token
             dispatch(setToken(token));
-            localStorage.setItem("token",token)
+            if (checkRef.current.checked) {
+                localStorage.setItem("token",token)
+            }
+
             navigate('/account');
         }
         catch (error) {
@@ -30,7 +35,7 @@ function SignIn() {
     return (
         <main className="main bg-dark">
             <section className="sign-in-content">
-                <i className="fa fa-user-circle sign-in-icon"></i>
+                <FontAwesomeIcon icon={faUserCircle} className="sign-in-icon"/>
                 <h1>Sign In</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="input-wrapper">
@@ -42,7 +47,7 @@ function SignIn() {
                         <input ref={passwordRef} type="password" id="password"/>
                     </div>
                     <div className="input-remember">
-                        <input type="checkbox" id="remember-me" />
+                        <input ref={checkRef} type="checkbox" id="remember-me" />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
                    <button className="sign-in-button">Sign In</button> 

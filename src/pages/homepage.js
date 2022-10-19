@@ -1,5 +1,3 @@
-
-import '../assets/scss/style.scss';
 import chatIcon from'../assets/img/icon-chat.png';
 import moneyIcon from'../assets/img/icon-money.png';
 import securityIcon from'../assets/img/icon-security.png';

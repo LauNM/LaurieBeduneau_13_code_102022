@@ -5,14 +5,18 @@ import Homepage from './pages/homepage';
 import SignIn from './pages/signIn';
 import UserAccount from './pages/userAccount';
 import EditCredentials from './pages/editCredentials';
-import {useSelector} from "react-redux";
+import { useDispatch } from "react-redux";
+import { setToken } from './slices/authSlice';
 
 function App() {
-  const isConnected = useSelector((state) => state.token.token) !== null;
+  const dispatch = useDispatch()
+  if (localStorage.getItem("token") !== null) {
+    dispatch(setToken(localStorage.getItem("token")))
+  }
 
   return (
     <div>
-      <Navbar isConnected={isConnected}/>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/sign-in" element={<SignIn />} />

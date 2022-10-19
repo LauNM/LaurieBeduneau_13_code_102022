@@ -1,4 +1,3 @@
-import '../assets/scss/style.scss';
 import {Link, useNavigate} from "react-router-dom";
 import { useRef } from 'react';
 import { updateProfile } from '../api/apiRquests';

@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import {Link, Navigate} from 'react-router-dom';
-import '../assets/scss/style.scss';
 import { getProfile } from "../api/apiRquests";
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from "../slices/userSlice";
@@ -26,7 +25,7 @@ function UserAccount() {
 
     const user = useSelector((state) => state.user)
 
-    if (user.firstName === null) return <div>Loading...</div>
+    if (token && user.firstName === null) return <div>Loading...</div>
 
     return (
         <div>
