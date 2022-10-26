@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from "../slices/userSlice";
 
 function UserAccount() {
-  const { token } = useSelector((state) => state.token);
+  const isConnected = useSelector((state) => state.token.token);
   const dispatch = useDispatch();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -33,16 +33,16 @@ function UserAccount() {
   }
 
   useEffect(() => {
-    if (token) fetchUser();
+    if (isConnected) fetchUser();
   }, []);
 
   const user = useSelector((state) => state.user)
 
-  if (token && user.firstName === null) return <div>Loading...</div>
+  if (isConnected && user.firstName === null) return <div>Loading...</div>
 
   return (
     <div>
-      { token ?
+      { isConnected ?
         <main className="main bg-dark">
           <div className="header">
             <h1>Welcome back<br/>{ user.firstName } !</h1>
