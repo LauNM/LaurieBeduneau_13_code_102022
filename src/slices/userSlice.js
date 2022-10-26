@@ -18,8 +18,8 @@ export const userSlice = createSlice({
       state.lastName = action.payload.lastName;
     },
     logOut: () => {
-      return {...initialState}
-  }
+      return { ...initialState }
+    }
   },
 })
 

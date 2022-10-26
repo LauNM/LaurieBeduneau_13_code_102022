@@ -1,4 +1,4 @@
-import {store} from "../store"
+import { store } from "../store"
 
 export async function getToken(data = {}) {
   return await fetch('http://localhost:3001/api/v1/user/login', {
@@ -17,8 +17,8 @@ export async function getToken(data = {}) {
 export async function getProfile() {
   const token = store.getState().token.token
   return await fetch('http://localhost:3001/api/v1/user/profile', {
-    headers:{
-      'Authorization': `Bearer ${token}`,
+    headers: {
+      'Authorization': `Bearer ${ token }`,
       'Content-Type': 'application/json'
     },
     method: "POST",
@@ -31,8 +31,8 @@ export async function getProfile() {
 export async function updateProfile(data = {}) {
   const token = store.getState().token.token
   return await fetch('http://localhost:3001/api/v1/user/profile', {
-    headers:{
-      'Authorization': `Bearer ${token}`,
+    headers: {
+      'Authorization': `Bearer ${ token }`,
       'Content-Type': 'application/json'
     },
     method: "PUT",
