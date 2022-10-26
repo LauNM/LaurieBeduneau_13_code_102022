@@ -8,7 +8,10 @@ export async function getToken(data = {}) {
     },
     method: "POST",
     body: JSON.stringify(data)
-  }).then(res => res.json());
+  }).then(res => {
+    if (res.ok) return res.json()
+    throw new Error("Accès non autorisé")
+  });
 }
 
 export async function getProfile() {
@@ -19,7 +22,10 @@ export async function getProfile() {
       'Content-Type': 'application/json'
     },
     method: "POST",
-  }).then(res => res.json());
+  }).then(res => {
+    if (res.ok) return res.json()
+    throw new Error("Accès non autorisé")
+  });
 }
 
 export async function updateProfile(data = {}) {
@@ -31,5 +37,8 @@ export async function updateProfile(data = {}) {
     },
     method: "PUT",
     body: JSON.stringify(data)
-  }).then(res => res.json());
+  }).then(res => {
+    if (res.ok) return res.json()
+    throw new Error("Une erreur s'est produite")
+  });
 }

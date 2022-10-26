@@ -301,24 +301,25 @@ html {
   font-size: 1rem;
 }
 
-.update-credentials {
+.credentials-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 100px;
-  background-color: #12002b;
-  color: white;
-
-  .form-wrapper {
-    max-width: 500px;
-  }
-  .cancel {
-    background-color: #f65b5b;
-    font-size: 10px;
-    border-radius: 3px;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-bottom: 20px;
+  .section-wrapper {
+    display: flex;
+    gap: 10px;
+    .form-button {
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      &.confirm {
+        border-color: #00bc77;
+        background-color: #00bc77;
+      }
+      &.cancel {
+        border-color: #f65b5b;
+        background-color: #f65b5b;
+      }
+    }
   }
 }
