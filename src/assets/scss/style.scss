@@ -168,6 +168,12 @@ html {
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;
+
+    &:disabled {
+      background-color: #f65b5b;
+      border-color:  #f65b5b;
+      cursor: not-allowed;
+    }
   }
   
   .sign-in-content {

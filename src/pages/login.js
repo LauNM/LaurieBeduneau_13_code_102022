@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getToken } from '../api/apiRquests';
 import { useDispatch } from 'react-redux';
@@ -8,6 +8,7 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Login() {
+  const [isLoading, setIsLoading] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
   const checkRef = useRef();
@@ -18,6 +19,7 @@ function Login() {
     e.preventDefault();
 
     try {
+      setIsLoading(true);
       const { body } = await getToken({ email: emailRef.current.value, password: passwordRef.current.value })
       const token = body.token
       dispatch(setToken(token));
@@ -25,8 +27,10 @@ function Login() {
         localStorage.setItem("token", token)
       }
       navigate('/profile');
+      setIsLoading(false);
     } catch (error) {
       console.log(error)
+      setIsLoading(false);
     }
   }
 
@@ -48,7 +52,7 @@ function Login() {
             <input ref={ checkRef } type="checkbox" id="remember-me"/>
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <button className="sign-in-button">Sign In</button>
+          <button className="sign-in-button" disabled={isLoading}>Sign In</button>
         </form>
       </section>
     </main>
