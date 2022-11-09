@@ -1,7 +1,7 @@
 import logo from '../assets/img/argentBankLogo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { logOut } from '../slices/authSlice';
 import { useDispatch, useSelector } from "react-redux";
@@ -11,19 +11,20 @@ import { setUser } from "../slices/userSlice";
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isConnected = useSelector((state) => state.token.token);
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
       const { body } = await getProfile();
       dispatch(setUser(body));
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [dispatch])
 
   useEffect(() => {
     if (isConnected) fetchUser();
-  }, []);
+  }, [fetchUser, isConnected]);
 
   const user = useSelector((state) => state.user)
 
@@ -36,7 +37,6 @@ function Navbar() {
       console.log(error)
     }
   }
-  const isConnected = useSelector((state) => state.token.token);
 
   return (
     <nav className="main-nav">
