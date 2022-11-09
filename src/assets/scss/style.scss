@@ -170,8 +170,8 @@ html {
     color: #fff;
 
     &:disabled {
-      background-color: #f65b5b;
-      border-color:  #f65b5b;
+      border-color: #017e53;
+      background-color: #017e53;
       cursor: not-allowed;
     }
   }
@@ -330,5 +330,20 @@ html {
         background-color: #f65b5b;
       }
     }
+  }
+}
+
+.error {
+  height: calc(100vh - 150px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .link-button {
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
   }
 }
