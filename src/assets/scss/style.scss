@@ -331,6 +331,14 @@ html {
       }
     }
   }
+  @media (max-width: 720px) {
+    .section-wrapper {
+      display: block;
+    }
+    .form-button {
+      margin: 5px;
+    }
+  }
 }
 
 .error {
