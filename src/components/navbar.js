@@ -26,7 +26,7 @@ function Navbar() {
     if (isConnected) fetchUser();
   }, [fetchUser, isConnected]);
 
-  const user = useSelector((state) => state.user)
+  const userFirstName = useSelector((state) => state.user.firstName);
 
   const logout = () => {
     try {
@@ -56,7 +56,7 @@ function Navbar() {
             <Link to={ '/profile' }>
               <span className="main-nav-item">
                 <FontAwesomeIcon icon={ faUserCircle }/>
-                {user.firstName}
+                {userFirstName}
               </span>
             </Link>
             <button className="logout-button" onClick={ logout }>

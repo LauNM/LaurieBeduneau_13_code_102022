@@ -44,7 +44,9 @@ function UserAccount() {
     else navigate('/');
   }, [isConnected, fetchUser, navigate]);
 
-  const user = useSelector((state) => state.user)
+  const userFirstName = useSelector((state) => state.user.firstName);
+  const userLastName = useSelector((state) => state.user.lastName);
+  const userFullName = `${userFirstName} ${userLastName}`;
 
   if (isLoading) return <div>Loading...</div>
 
@@ -52,19 +54,19 @@ function UserAccount() {
     <div>
       <main className="main bg-dark">
         <div className="header">
-          <h1>Welcome back<br/>{ user.firstName } !</h1>
+          <h1>Welcome back<br/>{ userFullName } !</h1>
           { showForm ?
             <form className="credentials-form" onSubmit={ handleSubmit }>
               <div className="section-wrapper">
                 <div className="input-wrapper">
                   <label htmlFor="firstname">Prénom</label>
                   <input ref={ firstNameRef } type="text" id="firstname" required={ true }
-                          defaultValue={ user.firstName }/>
+                          defaultValue={ userFirstName }/>
                 </div>
                 <div className="input-wrapper">
                   <label htmlFor="lastname">Nom</label>
                   <input ref={ lastNameRef } type="text" id="lastname" required={ true }
-                          defaultValue={ user.lastName }/>
+                          defaultValue={ userLastName }/>
                 </div>
               </div>
               <div className="section-wrapper">
